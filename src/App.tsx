@@ -1,7 +1,23 @@
-import react from "react";
+import "bootstrap/dist/css/bootstrap.css";
+import { Container } from "react-bootstrap";
+import { Routes, Route, Navigate } from "react-router-dom";
+// Components
+import NewNote from "./components/NewNote";
 
 function App() {
-  return <div>Hello</div>;
+  return (
+    <Container className="my-4">
+      <Routes>
+        <Route path="/" element={<h1>Home</h1>} />
+        <Route path="/new" element={<NewNote />} />
+        <Route path="/:id">
+          <Route index element={<h1>Show</h1>}></Route>
+          <Route path="edit" element={<h1>Edit</h1>}></Route>
+        </Route>
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </Container>
+  );
 }
 
 export default App;
